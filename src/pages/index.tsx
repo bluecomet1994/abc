@@ -1,23 +1,15 @@
-import { Inter } from 'next/font/google'
-import Head from 'next/head'
-import Navbar from '@/layouts/Navbar'
-import Home from '@/layouts/Home'
-import Footer from '@/layouts/Footer'
+import { Container } from '@mui/material';
+import ListCard from '@/components/ListCard';
+import checklist, { ChecklistType } from '@/utils/data';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function App() {
+export default function Home() {
   return (
-    <>
-      <Head>
-        <title>ABC</title> 
-      </Head>
-
-      <main className={`flex h-screen flex-col items-center ${inter.className}`}>
-        <Navbar />
-        <Home />
-        <Footer />
-      </main>
-    </>
+    <Container maxWidth="xl" className='flex flex-col h-full p-8 overflow-auto'>
+      {
+        checklist.map((list: ChecklistType) => (
+          <ListCard key={list.id} data={list} />
+        ))
+      }
+    </Container>
   )
 }
