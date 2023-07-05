@@ -1,27 +1,30 @@
 import React from 'react';
-import app from '@/config/firebase';
-import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
+import auth from '@/config/firebase';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { CircularProgress } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '@/store/user.action';
 
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = (props: any) => {
   const [currentUser, setCurrentUser] = React.useState<User | null>(null);
   const [pending, setPending] = React.useState(true);
-
-  const auth = getAuth(app);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     onAuthStateChanged(auth, user => {
       setCurrentUser(user);
+      dispatch(setUserData(user));
       setPending(false);
     })
-  }, []);
+  }, [dispatch]);
 
   if(pending) {
     return (
-      <>
-        Loading...
-      </>
+      <div className='flex justify-center items-center w-full h-full'>
+        <CircularProgress size={72} />
+      </div>
     )
   } else {
     return (

@@ -10,9 +10,30 @@ import {
   Box,
   Hidden
 } from '@mui/material';
+import auth from '@/config/firebase';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
   const [isLogged, setIsLogged] = React.useState(false);
+  const router = useRouter();
+  const {currentUser} = useSelector(({user}) => user);
+
+  const logout = () => {
+    auth.signOut()
+      .then(() => {
+        setIsLogged(false);
+        router.push('/auth/login');
+      })
+  }
+
+  React.useEffect(() => {
+    if (currentUser) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
+  }, [currentUser, isLogged, router]);
 
   return (
     <AppBar position="static" className='z-50'>
@@ -26,27 +47,26 @@ export default function Navbar() {
               <h1 className='font-bold text-xl mx-2'>Employment Staff Checklist</h1>
             </Hidden>
           </Box>
-          
+
           {
             isLogged ?
               <Box className="flex">
                 <div className='flex items-center mx-2'>
                   <Avatar className='mx-2' />
-                  <h1>Morgan Mastrangelo</h1>
+                  <h1>{auth.currentUser?.displayName}</h1>
                 </div>
 
-                <Link href={'/logout'}>
-                  <Button
-                    color="inherit"
-                    className='w-24 h-10'
-                  >
-                    LOGOUT
-                  </Button>
-                </Link>
+                <Button
+                  color="inherit"
+                  className='w-24 h-10'
+                  onClick={logout}
+                >
+                  LOGOUT
+                </Button>
               </Box>
               :
               <Box>
-                <Link href={'/login'}>
+                <Link href={'/auth/login'}>
                   <Button
                     color="inherit"
                     className='w-24 h-10'
@@ -54,8 +74,8 @@ export default function Navbar() {
                     LOGIN
                   </Button>
                 </Link>
-    
-                <Link href={'/register'}>
+
+                <Link href={'/auth/register'}>
                   <Button
                     color="inherit"
                     className='w-24 h-10'

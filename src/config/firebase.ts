@@ -1,17 +1,18 @@
 import { initializeApp } from 'firebase/app';
-import 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBPQPm4XcFcu9IYIJbeuLJoTpq3XZt_EI0",
-  authDomain: "affordable-ca389.firebaseapp.com",
-  databaseURL: "https://affordable-ca389-default-rtdb.firebaseio.com",
-  projectId: "affordable-ca389",
-  storageBucket: "affordable-ca389.appspot.com",
-  messagingSenderId: "745993249360",
-  appId: "1:745993249360:web:da086817ebb48de9a9a755",
-  measurementId: "G-39PJR6TRE4"
+  apiKey: "AIzaSyDNEQVhjJAx1MTo8QfQWnRv5eEXinfYh-s",
+  authDomain: "affordable-1a64b.firebaseapp.com",
+  projectId: "affordable-1a64b",
+  databaseURL: "https://affordable-1a64b-default-rtdb.firebaseio.com",
+  storageBucket: "affordable-1a64b.appspot.com",
+  messagingSenderId: "30295631686",
+  appId: "1:30295631686:web:1b41c8bbf7129933f1a747",
+  measurementId: "G-DSWP1NV1HB"
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-export default app;
+export default auth;
