@@ -4,7 +4,7 @@ import { CircularProgress } from '@mui/material';
 import Form1 from "@/components/forms/Form1";
 import { app } from "@/config/firebase";
 import { getApplications } from "@/store/actions/application.action";
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { DocumentData, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { STATUS_TEXT } from "@/utils/enums";
 import PreviewPaper from "@/components/PreviewPaper";
 
@@ -15,14 +15,20 @@ export default function InterviewSchedule() {
   const fireStore = getFirestore(app);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [detail, setDetail] = useState<DocumentData>();
 
   useEffect(() => {
     getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
       .then(({ docs }) => {
         dispatch(getApplications(docs));
         setIsLoading(false);
+        docs.map(doc => {
+          if(doc.data().type === 1) {
+            setDetail(doc.data());
+          }
+        });
       });
-  });
+  }, [currentUser, dispatch, fireStore]);
 
   return isLoading ? (
     <div className='flex justify-center items-center w-full h-full'>
@@ -31,8 +37,8 @@ export default function InterviewSchedule() {
   ) : (
     <div className='w-full h-full overflow-auto'>
       {
-        checklist[0].status.text === STATUS_TEXT.PENDING ?
-          <PreviewPaper data={checklist[0]} />
+        detail && checklist[0].status.text === STATUS_TEXT.PENDING ?
+          <PreviewPaper detail={detail} />
           :
           <Form1 />
       }
