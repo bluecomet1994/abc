@@ -31,7 +31,7 @@ export default function InterviewSchedule() {
   ) : (
     <div className='w-full h-full overflow-auto'>
       {
-        checklist[0].status === STATUS_TEXT.PENDING ?
+        checklist[0].status.text === STATUS_TEXT.PENDING ?
           <PreviewPaper data={checklist[0]} />
           :
           <Form1 />
