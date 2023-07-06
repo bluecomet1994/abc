@@ -26,8 +26,8 @@ import { useRouter } from 'next/router';
 import { STATUS_TEXT } from '@/utils/enums';
 
 const Form1 = () => {
-  const [date1, setDate1] = useState(dayjs());
-  const [date2, setDate2] = useState(dayjs());
+  const [date1, setDate1] = useState<any>(dayjs());
+  const [date2, setDate2] = useState<any>(dayjs());
   const [qualify1, setQualify1] = useState('yes');
   const [qualify2, setQualify2] = useState('yes');
   const [qualify3, setQualify3] = useState('yes');
