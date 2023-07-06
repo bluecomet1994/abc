@@ -106,11 +106,12 @@ const initialState = {
 };
 
 const application = (state = initialState, action: any) => {
+  let checklist = state.checklist;
+
   switch(action.type) {
     case Action.GET_STATUS: {
-      let newChecklist = null;
       action.payload.map((doc:any) => {
-        let status = {};
+        let status: any = {};
 
         if(doc.data().status === STATUS_TEXT.PENDING) {
           status = {
@@ -132,25 +133,21 @@ const application = (state = initialState, action: any) => {
             text: STATUS_TEXT.READY,
             color: STATUS_COLOR.READY
           }
-        } 
+        }
 
-        newChecklist = state.checklist.map((item, index) => {
-          if(index === doc.data().type - 1) {
-            return {
-              ...item,
-              status
-            }
+        checklist.map((list, index) => {
+          if(index + 1 === doc.data().type) {
+            checklist[index].status = status;
           }
-
-          return item;
         });
       });
 
       return {
         ...state,
-        checklist: newChecklist
-      };
+        checklist
+      }
     }
+
     default: {
       return state;
     }

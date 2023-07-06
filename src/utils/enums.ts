@@ -11,12 +11,3 @@ export enum STATUS_TEXT {
   FAILED = 'FAILED',
   READY = 'READY'
 }
-
-export enum INPUT_TYPE {
-  SHORT_INPUT = 1,
-  LONG_INPUT = 2,
-  COMMENT = 2,
-  SINGLE_SELECT = 3,
-  MULTI_SELECT = 4,
-  DATE = 5
-}

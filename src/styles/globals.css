@@ -12,6 +12,14 @@
   border-radius: 99px;
 }
 
+table, tr, td {
+  border: 1px solid black;
+}
+
+table td {
+  padding: 12px;
+}
+
 .fadeup {
   animation: fadeup-anim .5s;
 }

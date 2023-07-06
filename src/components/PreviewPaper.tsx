@@ -25,7 +25,7 @@ const PreviewPaper = ({detail}: any) => {
                     detail.application[key].map((item: any, index: number) => (
                       <div key={index}>
                         <span>{item.question}</span>
-                        <span className="ml-4 font-sans font-semibold text-teal-600 text-sm">{item.answer}</span>
+                        <span className="ml-4 font-sans underline font-semibold text-teal-600 text-sm">{item.answer}</span>
                       </div>
                     ))
                   }

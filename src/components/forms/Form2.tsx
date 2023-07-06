@@ -67,7 +67,7 @@ const Form2 = () => {
   const [section3_4, setSection3_4] = useState('instrument');
   const [section3_5, setSection3_5] = useState('selling');
 
-  const selectData = {
+  const qaData = {
     section1: [
       {
         question: "1. Mrs. X takes out a policy on April 23rd, 2017 and pays a monthly contribution of R150.00.  Her contribution increases by R20 on the 1st of August every year. What is her monthly contribution for September 2019?",
@@ -272,6 +272,12 @@ const Form2 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
+      "User Info": [
+        {question:"Name & Surname", answer: yupData.name},
+        {question:"Contact Number", answer: yupData.phone},
+        {question:"ID Number", answer: yupData.id},
+        {question:"Assessment Date", answer: date1.toString()}
+      ],
       "Section 1": [
         {
           question: "1. Mrs. X takes out a policy on April 23rd, 2017 and pays a monthly contribution of R150.00. Her contribution increases by R20 on the 1st of August every year. What is her monthly contribution for September 2019?",
@@ -438,7 +444,7 @@ const Form2 = () => {
           <h1 className='font-semibold text-lg'>SECTION 1 - Choose the correct answer by marking the correct block with an X</h1>
 
           {
-            selectData.section1.map((item: any, index: number) => (
+            qaData.section1.map((item: any, index: number) => (
               <FormControl key={index} className='mx-4 my-4'>
                 <FormLabel id="matric">
                   {item.question}
@@ -466,7 +472,7 @@ const Form2 = () => {
           </h1>
 
           {
-            selectData.section2.first.map((item: any, index: number) => (
+            qaData.section2.first.map((item: any, index: number) => (
               <FormControl key={index} className='mx-4 my-4'>
                 <FormLabel id="matric">
                   {item.question}
@@ -495,7 +501,7 @@ const Form2 = () => {
           </h1>
 
           {
-            selectData.section2.second.map((item: any, index: number) => (
+            qaData.section2.second.map((item: any, index: number) => (
               <FormControl key={index} className='mx-4 my-4'>
                 <FormLabel id="matric">
                   {item.question}
@@ -527,7 +533,7 @@ const Form2 = () => {
           </h1>
 
           {
-            selectData.section3.map((item: any, index: number) => (
+            qaData.section3.map((item: any, index: number) => (
               <FormControl key={index} className='w-full mx-4 my-4'>
                 <FormLabel id="matric">
                   {item.question}

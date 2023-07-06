@@ -110,8 +110,6 @@ const Form1 = () => {
       application
     }
 
-    console.log(data);
-
     Swal.fire({
       icon: "question",
       text: "Are you sure you want to submit this application?",
