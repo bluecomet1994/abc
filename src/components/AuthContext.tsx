@@ -3,7 +3,7 @@ import auth from '@/config/firebase';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { CircularProgress } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '@/store/user.action';
+import { setUserData } from '@/store/actions/user.action';
 
 export const AuthContext = React.createContext({});
 

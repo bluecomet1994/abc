@@ -1,103 +1,41 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { Container, TextField, Button } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import { yupResolver } from '@hookform/resolvers/yup';
-import form1ValidationSchema from '@/utils/validations/form1';
-import dayjs from 'dayjs';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from '@mui/material';
+import Form1 from "@/components/forms/Form1";
+import { app } from "@/config/firebase";
+import { getApplications } from "@/store/actions/application.action";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { STATUS_TEXT } from "@/utils/enums";
+import PreviewPaper from "@/components/PreviewPaper";
 
 export default function InterviewSchedule() {
-  const today = dayjs();
-  const yesterday = dayjs().subtract(1, 'day');
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector(({user}) => user);
+  const { checklist } = useSelector(({application}) => application);
+  const fireStore = getFirestore(app);
 
-  const formOptions = { resolver: yupResolver(form1ValidationSchema) };
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { register, reset, handleSubmit, formState } = useForm(formOptions);
-  const { errors } = formState;
+  useEffect(() => {
+    getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
+      .then(({ docs }) => {
+        dispatch(getApplications(docs));
+        setIsLoading(false);
+      });
+  });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  }
-
-  return (
+  return isLoading ? (
+    <div className='flex justify-center items-center w-full h-full'>
+      <CircularProgress size={72} />
+    </div>
+  ) : (
     <div className='w-full h-full overflow-auto'>
-      <Container maxWidth="xl" className="w-full h-full p-4">
-        <h1 className="font-bold text-3xl text-center text-teal-500 my-8">ABC Assessment & Interview Schedule</h1>
-
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
-          <div className='flex w-full'>
-            <TextField
-              label="Name & Surname"
-              color='primary'
-              variant="standard"
-              {...register('name')}
-              className='w-full m-2'
-              helperText={errors.name?.message}
-              error={errors.name?.message ? true : false}
-              required
-            />
-            <TextField
-              label="Contact Number"
-              color='primary'
-              variant="standard"
-              {...register('phone')}
-              placeholder='+0 000 000 0000'
-              className='w-full m-2'
-              helperText={errors.phone?.message}
-              error={errors.phone?.message ? true : false}
-              required
-            />
-          </div>
-
-          <div className='flex w-full'>
-            <TextField
-              label="ID Number"
-              color='primary'
-              variant="standard"
-              {...register('id')}
-              className='w-full m-2'
-              helperText={errors.id?.message}
-              error={errors.id?.message ? true : false}
-              required
-            />
-            <TextField
-              label="Area applied for"
-              color='primary'
-              variant="standard"
-              {...register('area')}
-              className='w-full m-2'
-              helperText={errors.area?.message}
-              error={errors.area?.message ? true : false}
-              required
-            />
-          </div>
-
-          <div className='flex w-full'>
-            <TextField
-              label="Interviewer"
-              color='primary'
-              variant="standard"
-              {...register('interviewer')}
-              className='w-full m-2'
-              helperText={errors.interviewer?.message}
-              error={errors.interviewer?.message ? true : false}
-              required
-            />
-            
-          </div>
-
-          <div className='mt-8 text-center'>
-            <Button
-              type='submit'
-              color="primary"
-              variant='contained'
-              className='w-96 h-12 bg-teal-500 font-bold text-lg'
-            >
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Container>
+      {
+        checklist[0].status === STATUS_TEXT.PENDING ?
+          <PreviewPaper />
+          :
+          <Form1 />
+      }
     </div>
   )
 }

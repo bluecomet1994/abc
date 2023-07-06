@@ -13,7 +13,8 @@ export enum STATUS_TEXT {
 }
 
 export enum INPUT_TYPE {
-  TEXT = 1,
+  SHORT_INPUT = 1,
+  LONG_INPUT = 2,
   COMMENT = 2,
   SINGLE_SELECT = 3,
   MULTI_SELECT = 4,

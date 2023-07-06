@@ -1,4 +1,4 @@
-import * as Actions from './user.action';
+import * as Actions from '../actions/user.action';
 
 const initialState = {
   currentUser: null
