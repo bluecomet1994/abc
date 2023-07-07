@@ -118,31 +118,16 @@ const Form5 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
-      "User Info": [
-        { question: "Learners Name", answer: yupData.name },
-        { question: "Learners ID", answer: yupData.id },
-        { question: "Area", answer: yupData.area },
-        { question: "Trainer", answer: yupData.trainer },
-        { question: "Date", answer: date1.format('MM/DD/YYYY') }
-      ],
-      "Circle the answer": [
-        {question: "2. What are the entry ages for someone who would like to join this cover? (1 mark)", answer: select1},
-        {question: "3. What is the waiting period on legal matters to be covered on the Legal plans? (1 mark)", answer: select2}
-      ],
-      "Answer the questions": [
-        {question: "4. Name the three types of matters the Legal Plan cover you for. (3 marks)", answer: yupData.qa1},
-        {question: "5. Explain the waiting period in your own words? (1 marks)", answer: yupData.qa2},
-        {question: "6. What is the waiting period for the Bail benefit? (1 mark)", answer: yupData.qa3},
-        {question: "7. Explain the Retrenchment Benefit? (1 mark)", answer: yupData.qa4},
-        {question: "8. If a customer has a pre-existing case/matter what would Clientèle do to assist the customer? (2 marks)", answer: yupData.qa5},
-        {question: "9. Name three exclusions or matters where the customer will not be covered. (3 marks)", answer: yupData.qa6},
-        {question: "10. If a customer gives you a scenario of a matter or case and needs you to confirm that Clientèle will cover such matter, how will you respond? (1 marks)", answer: yupData.qa7},
-        {question: "11. Explain what is Prospects of success? (1 marks)", answer: yupData.qa8},
-        {question: "12. Mr Vee says he is an independent renovations company and there are some people who hired him and have not paid him for work he has done. He wants to know if Clientele Legal can cover him to recover the money owed to him? (2 marks)", answer: yupData.qa9},
-        {question: "13. Mr Nzo and Mrs Nzo decide to get a divorce because they can't live with each other anymore. They want to know if Clientele Legal will cover them for a divorce. (2 marks)", answer: yupData.qa10},
-        {question: "14. Mrs Mzizi wants to buy a house and should this house in the future have problems with the structure that the seller didn't tell her about, would Clientele Legal cover her. (2 marks)", answer: yupData.qa11},
-        {question: "15. Chris buys a PlayStation from James for R3 500.00. He says that the James has not delivered the PlayStation and 4 months have passed. He wants to know if Clientele Legal will help him sue the seller. (2 marks)", answer: yupData.qa12}
-      ]
+      userinfo: {
+        name: yupData.name,
+        id: yupData.id,
+        area: yupData.area,
+        trainer: yupData.trainer,
+        date: date1.format('MM/DD/YYYY')
+      },
+      table: [yupData.table1,yupData.table2,yupData.table3,yupData.table4,yupData.table5,yupData.table6],
+      circle: [select1, select2],
+      qa: [yupData.qa1,yupData.qa2,yupData.qa3,yupData.qa4,yupData.qa5,yupData.qa6,yupData.qa7,yupData.qa8,yupData.qa9,yupData.qa10,yupData.qa11,yupData.qa12]
     }
 
     const data = {

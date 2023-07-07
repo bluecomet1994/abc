@@ -152,48 +152,15 @@ const Form3 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
-      "User Info": [
-        {question:"Learners Name", answer: yupData.name},
-        {question:"Learners ID", answer: yupData.id},
-        {question:"Area", answer: yupData.area},
-        {question:"Trainer", answer: yupData.trainer},
-        {question:"Date", answer: date1.format('MM/DD/YYYY')}
-      ],
-      "Circle the answer": [
-        {question: "1. Who is the market conduct Regulator of Financial Institutions?", answer: select1},
-        {question: "2. Three other Key Role-players in the Financial Sector are", answer: select2},
-        {question: "3. Two principles of Treating Customers Fairly are", answer: select3},
-        {question: "4. When does a representative need to work under FAIS supervision?", answer: select4},
-        {question: "5. Please select the correct statement", answer: select5},
-        {question: "6. Debarment of Representatives is", answer: select6},
-        {question: "7. What is the purpose of FICA?", answer: select7},
-      ],
-      "Answer the questions": [
-        {
-          question: "8. In your role and conduct as a Representative you will be required to do certain things and behave in a certain manner when dealing with clients. Name three things you must always do as a representative.",
-          answer: yupData.qa1
-        },
-        {
-          question: "9. What does FAIS stand for?",
-          answer: yupData.qa2
-        },
-        {
-          question: "10. In your own words explain what it means to work under supervision",
-          answer: yupData.qa3
-        },
-        {
-          question: "11. In your own words explain Intermediary Scripted Services.",
-         answer: yupData.qa4
-        },
-        {
-          question: "12. What are the consequences if you commit fraud?",
-          answer: yupData.qa5
-        },
-        {
-          question: "13. If you were a client, how would you want to be treated by a person selling you an insurance policy?",
-          answer: yupData.qa6
-        }
-      ]
+      userinfo: {
+        name: yupData.name,
+        id: yupData.id,
+        area: yupData.area,
+        trainer: yupData.trainer,
+        date: date1.format('MM/DD/YYYY')
+      },
+      circle: [select1,select2,select3,select4,select5,select6,select7],
+      qa: [yupData.qa1, yupData.qa2, yupData.qa3, yupData.qa4, yupData.qa5, yupData.qa6]
     }
 
     const data = {

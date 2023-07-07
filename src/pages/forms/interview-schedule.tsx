@@ -16,6 +16,7 @@ export default function InterviewSchedule() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [detail, setDetail] = useState<DocumentData>();
+  const [documentId, setDocumentId] = useState('');
 
   useEffect(() => {
     getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
@@ -25,6 +26,7 @@ export default function InterviewSchedule() {
         docs.map(doc => {
           if(doc.data().type === 1) {
             setDetail(doc.data());
+            setDocumentId(doc.id);
           }
         });
       });
@@ -38,7 +40,7 @@ export default function InterviewSchedule() {
     <div className='w-full h-full overflow-auto'>
       {
         checklist[0].status.text === STATUS_TEXT.PENDING ?
-          <Form1Preview detail={detail} />
+          <Form1Preview detail={detail} id={documentId} />
           :
           <Form1 />
       }

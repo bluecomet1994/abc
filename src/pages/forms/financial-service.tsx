@@ -6,7 +6,7 @@ import { app } from "@/config/firebase";
 import { getApplications } from "@/store/actions/application.action";
 import { DocumentData, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { STATUS_TEXT } from "@/utils/enums";
-import PreviewPaper from "@/components/preview/PreviewPaper";
+import Form3Preview from "@/components/preview/Form3Preview";
 
 export default function InterviewSchedule() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default function InterviewSchedule() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [detail, setDetail] = useState<DocumentData>();
+  const [documentId, setDocumentId] = useState('');
 
   useEffect(() => {
     getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
@@ -25,6 +26,7 @@ export default function InterviewSchedule() {
         docs.map(doc => {
           if(doc.data().type === 3) {
             setDetail(doc.data());
+            setDocumentId(doc.id);
           }
         });
       });
@@ -37,8 +39,8 @@ export default function InterviewSchedule() {
   ) : (
     <div className='w-full h-full overflow-auto'>
       {
-        detail && checklist[0].status.text === STATUS_TEXT.PENDING ?
-          <PreviewPaper detail={detail} />
+        checklist[2].status.text === STATUS_TEXT.PENDING ?
+          <Form3Preview detail={detail} id={documentId} />
           :
           <Form3 />
       }

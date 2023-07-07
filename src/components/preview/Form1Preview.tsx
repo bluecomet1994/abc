@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Container,
@@ -12,23 +12,35 @@ import {
   Radio,
   FormControlLabel,
   FormControl,
-  FormLabel,
-  Typography
+  FormLabel
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { yupResolver } from '@hookform/resolvers/yup';
-import form1ValidationSchema from '@/utils/validations/form1';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
-import { app } from '@/config/firebase';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { STATUS_TEXT } from '@/utils/enums';
+import { deleteDoc, doc, getFirestore } from 'firebase/firestore';
+import { app } from '@/config/firebase';
 
-const Form1Preview = ({ detail }: any) => {
-  useEffect(() => {
-    console.log(detail.application);
-  }, [detail]);
+const Form1Preview = ({ detail, id }: any) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const fireStore = getFirestore(app);
+  const docRef = doc(fireStore, 'applications', id);
+
+  const updateDocument = () => {
+    if(detail.status === STATUS_TEXT.FAILED) {
+      setIsLoading(true);
+
+      deleteDoc(docRef)
+        .then(() => {
+          setIsLoading(false);
+          router.push('/');
+        }).catch(error => {
+          setIsLoading(false);
+          console.log(error)
+        });
+    } else {
+      router.push('/');
+    }
+  }
 
   return (
     <Container maxWidth="xl" className="w-full h-full p-4">
@@ -424,15 +436,22 @@ const Form1Preview = ({ detail }: any) => {
         </div>
 
         <div className='w-full text-center mb-8'>
-          <Link href={'/'}>
-            <Button
-              color="primary"
-              variant="contained"
-              className='w-72 h-12 font-bold text-xl my-8 bg-teal-600'
-            >
-              Back to the List
-            </Button>
-          </Link>
+          <Button
+            color="primary"
+            variant="contained"
+            className='w-72 h-12 font-bold text-xl my-8 bg-teal-600'
+            onClick={updateDocument}
+          >
+            {
+              isLoading ?
+                <CircularProgress size={24} />
+                :
+                detail.status === STATUS_TEXT.FAILED ?
+                  'Delete and Resubmit'
+                  :
+                  'Back to the List'
+            }
+          </Button>
         </div>
       </Paper>
     </Container>

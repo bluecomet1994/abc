@@ -257,46 +257,15 @@ const Form4 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
-      "User Info": [
-        {question:"Learners Name", answer: yupData.name},
-        {question:"Learners ID", answer: yupData.id},
-        {question:"Area", answer: yupData.area},
-        {question:"Trainer", answer: yupData.trainer},
-        {question:"Date", answer: date1.format('MM/DD/YYYY')}
-      ],
-      "Circle the answer": [
-        {question: "1. The Clientele Funeral Plans can provide cover for non-South African citizens",answer: select1},
-        {question: "2. What plan types are available on the Clientèle Funeral Plans?",answer: select2},
-        {question: "3. Premiums on the Clientèle Funeral Plans will increase by 10% and the Death benefit amount by 6%?",answer: select3},
-        {question: "4. Death due to an accident is covered from…",answer: select4},
-        {question: "5. There is a Premium Payback Benefit on the Clientèle Funeral Dignity Plan?",answer: select5},
-        {question: "6. Death due to natural causes for the main member, spouse and children are covered as follows",answer: select6},
-        {question: "7. Should a customer increase the cover level at a later stage, then",answer: select7},
-        {question: "8. On the Clientèle Funeral Plan, what is the entry age for the Main Insured Life?",answer: select8},
-        {question: "9. On the Clientèle Funeral Plan, what is the entry age for the Extended Family Members?",answer: select9},
-        {question: "10. What is the exclusion on the Clientèle Funeral Dignity Plan?",answer: select10},
-        {question: "11. Under which of the following events can the Clientèle Funeral Dignity Plan be terminated?",answer: select11},
-        {question: "12. The Grocery, Unveiling and Transport benefits are…",answer: select12},
-        {question: "13. Select the 2 correct options applicable for the Grocery Benefit:",answer: select13},
-        {question: "14. What is the cash amount for the Unveiling benefit?",answer: select14},
-        {question: "15. On the Clientèle Funeral Plan, how will the nominated beneficiary receive the Airtime Benefit amount?",answer: select15},
-        {question: "16. What is annual increase applicable to the airtime benefit on the Ultimate Dignity Plan?",answer: select16},
-        {question: "17. Name 3 EASA benefits on the funeral plan",answer: select17},
-      ],
-      "Answer the questions": [
-        {
-          question: "18. In your own words explain the premium payback benefit (in full) on the Ultimate Funeral Plan.",
-          answer: yupData.qa1
-        },
-        {
-          question: "19. In your own word explain the rules for covering children under the Funeral Policy. Include the age brackets and maximum cover amounts per age bracket",
-          answer: yupData.qa2
-        },
-        {
-          question: "20. In your own words, explain the consequences if you submit fraudulent sales.",
-          answer: yupData.qa3
-        }
-      ]
+      userinfo: {
+        name: yupData.name,
+        id: yupData.id,
+        area: yupData.area,
+        trainer: yupData.trainer,
+        date: date1.format('MM/DD/YYYY')
+      },
+      circle: [select1,select2,select3,select4,select5,select6,select7,select8,select9,select10,select11,select12,select13,select14,select15,select16,select17],
+      qa: [yupData.qa1, yupData.qa2, yupData.qa3]
     }
 
     const data = {

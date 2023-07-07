@@ -272,13 +272,14 @@ const Form2 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
-      "User Info": [
-        {question:"Name & Surname", answer: yupData.name},
-        {question:"Contact Number", answer: yupData.phone},
-        {question:"ID Number", answer: yupData.id},
-        {question:"Assessment Date", answer: date1.format('MM/DD/YYYY')}
-      ],
-      "Section 1": [
+      userinfo: {
+        name: yupData.name,
+        phone: yupData.phone,
+        id: yupData.id,
+        date: date1.format('MM/DD/YYYY'),
+        sign: yupData.sign
+      },
+      selection1: [
         {
           question: "1. Mrs. X takes out a policy on April 23rd, 2017 and pays a monthly contribution of R150.00. Her contribution increases by R20 on the 1st of August every year. What is her monthly contribution for September 2019?",
           answer: section1_1
@@ -320,26 +321,26 @@ const Form2 = () => {
           answer: section1_10
         },
       ],
-      "Section 2-1": [
+      selection21: [
         { question: "Question 1", answer: section2_1 },
         { question: "Question 2", answer: section2_2 },
         { question: "Question 3", answer: section2_3 },
         { question: "Question 4", answer: section2_4 },
         { question: "Question 5", answer: section2_5 }
       ],
-      "Section 2-2": [
-        { question: "Question 6 - Verificasion", answer: section2_6 },
-        { question: "Question 7 - Programe", answer: section2_7 },
-        { question: "Question 8 - Financial", answer: section2_8 },
-        { question: "Question 9 - Complience", answer: section2_9 },
-        { question: "Question 10 - Interacction", answer: section2_10 },
-        { question: "Question 11 - Objective", answer: section2_11 },
-        { question: "Question 12 - Recomendation", answer: section2_12 },
-        { question: "Question 13 - Successfully", answer: section2_13 },
-        { question: "Question 14 - Representative", answer: section2_14 },
-        { question: "Question 15 - Immediately", answer: section2_15 }
+      selection22: [
+        { question: "Question 6 - Verificasion", answer: section2_6, correct: yupData.correct1 },
+        { question: "Question 7 - Programe", answer: section2_7, correct: yupData.correct2 },
+        { question: "Question 8 - Financial", answer: section2_8, correct: yupData.correct3 },
+        { question: "Question 9 - Complience", answer: section2_9, correct: yupData.correct4 },
+        { question: "Question 10 - Interacction", answer: section2_10, correct: yupData.correct5 },
+        { question: "Question 11 - Objective", answer: section2_11, correct: yupData.correct6 },
+        { question: "Question 12 - Recomendation", answer: section2_12, correct: yupData.correct7 },
+        { question: "Question 13 - Successfully", answer: section2_1, correct: yupData.correct8 },
+        { question: "Question 14 - Representative", answer: section2_14, correct: yupData.correct9 },
+        { question: "Question 15 - Immediately", answer: section2_15, correct: yupData.correct10 }
       ],
-      "Section 3": [
+      selection3: [
         { question: "Question 1 - Drive is to car, as fly is to", answer: section3_1 },
         { question: "Question 2 - Creative is the same as", answer: section3_2 },
         { question: "Question 3 - Ethical is the same as", answer: section3_3 },
