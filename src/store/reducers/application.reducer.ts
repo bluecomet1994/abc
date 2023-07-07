@@ -48,60 +48,60 @@ const initialState = {
         color: STATUS_COLOR.READY
       }
     },
-    {
-      id: 6,
-      title: "Fixed Term Contract",
-      link: '/forms/fixed-term-contract',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    },
-    {
-      id: 7,
-      title: "Personal Details",
-      link: '/forms/personal-details',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    },
-    {
-      id: 8,
-      title: "Honesty, integrity and good standing - Declaration Questions",
-      link: '/forms/declaration',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    },
-    {
-      id: 9,
-      title: "Acknowledge of Debt",
-      link: '/forms/acknowledge',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    },
-    {
-      id: 10,
-      title: "Specific Business Contravention Policy",
-      link: '/forms/policy',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    },
-    {
-      id: 11,
-      title: "Letter of Consent",
-      link: '/forms/consent',
-      status: {
-        text: STATUS_TEXT.READY,
-        color: STATUS_COLOR.READY
-      }
-    }
+    // {
+    //   id: 6,
+    //   title: "Fixed Term Contract",
+    //   link: '/forms/fixed-term-contract',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // },
+    // {
+    //   id: 7,
+    //   title: "Personal Details",
+    //   link: '/forms/personal-details',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // },
+    // {
+    //   id: 8,
+    //   title: "Honesty, integrity and good standing - Declaration Questions",
+    //   link: '/forms/declaration',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // },
+    // {
+    //   id: 9,
+    //   title: "Acknowledge of Debt",
+    //   link: '/forms/acknowledge',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // },
+    // {
+    //   id: 10,
+    //   title: "Specific Business Contravention Policy",
+    //   link: '/forms/policy',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // },
+    // {
+    //   id: 11,
+    //   title: "Letter of Consent",
+    //   link: '/forms/consent',
+    //   status: {
+    //     text: STATUS_TEXT.READY,
+    //     color: STATUS_COLOR.READY
+    //   }
+    // }
   ]
 };
 
