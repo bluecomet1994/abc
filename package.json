@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.13.7",
     "@mui/lab": "^5.0.0-alpha.135",
     "@mui/material": "^5.13.7",
+    "@mui/styles": "^5.13.7",
     "@mui/x-date-pickers": "^6.9.1",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",

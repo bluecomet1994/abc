@@ -8,7 +8,7 @@ export default function ListCard(props: any) {
   return (
     <Paper className='my-3'>
       <Button
-        className='relative flex justify-between w-full h-24 p-6 bg-slate-50 cursor-pointer transition-all hover:bg-slate-200'
+        className='relative flex justify-between w-full px-6 py-10 bg-slate-50 cursor-pointer transition-all hover:bg-slate-200'
         onClick={() => router.push(data.link)}
       >
         <span className={`absolute top-0 left-0 w-1 h-full bg-${data.status.color}`} />

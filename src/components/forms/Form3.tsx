@@ -205,8 +205,6 @@ const Form3 = () => {
       application
     }
 
-    console.log(data);
-
     Swal.fire({
       icon: "question",
       text: "Are you sure you want to submit this application?",
@@ -240,13 +238,13 @@ const Form3 = () => {
       <h1 className="font-bold text-3xl text-center text-teal-500 my-8">Financial Services Assessment</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
-      <div className='flex w-full'>
+      <div className='flex flex-col md:flex-row w-full'>
           <TextField
             label="Learners Name"
             color='primary'
             variant="outlined"
             {...register('name')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.name?.message}
             error={errors.name?.message ? true : false}
           />
@@ -255,19 +253,19 @@ const Form3 = () => {
             color='primary'
             variant="outlined"
             {...register('id')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.id?.message}
             error={errors.id?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-full'>
+        <div className='flex flex-col md:flex-row w-full'>
           <TextField
             label="Area"
             color='primary'
             variant="outlined"
             {...register('area')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.area?.message}
             error={errors.area?.message ? true : false}
           />
@@ -277,13 +275,13 @@ const Form3 = () => {
             color='primary'
             variant="outlined"
             {...register('trainer')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.trainer?.message}
             error={errors.trainer?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-1/2 p-2'>
+        <div className='flex w-full my-1 md:w-1/2 md:p-2'>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               value={date1}

@@ -34,7 +34,7 @@ const Form5 = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [date1, setDate1] = useState<any>(dayjs());
-  const [select1, setSelect1] = useState("True");
+  const [select1, setSelect1] = useState("16 to 51");
   const [select2, setSelect2] = useState("Member & Family with Extended family (max 10 extended members)");
 
   const qaData = {
@@ -189,13 +189,13 @@ const Form5 = () => {
       <h1 className="font-bold text-3xl text-center text-teal-500 my-8">Clientèle Legal Plans Assessment</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
-        <div className='flex w-full'>
+        <div className='flex flex-col md:flex-row w-full'>
           <TextField
             label="Learners Name"
             color='primary'
             variant="outlined"
             {...register('name')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.name?.message}
             error={errors.name?.message ? true : false}
           />
@@ -204,19 +204,19 @@ const Form5 = () => {
             color='primary'
             variant="outlined"
             {...register('id')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.id?.message}
             error={errors.id?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-full'>
+        <div className='flex flex-col md:flex-row w-full'>
           <TextField
             label="Area"
             color='primary'
             variant="outlined"
             {...register('area')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.area?.message}
             error={errors.area?.message ? true : false}
           />
@@ -226,13 +226,13 @@ const Form5 = () => {
             color='primary'
             variant="outlined"
             {...register('trainer')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.trainer?.message}
             error={errors.trainer?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-1/2 p-2'>
+        <div className='flex w-full my-1 md:w-1/2 md:p-2'>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               value={date1}

@@ -357,8 +357,6 @@ const Form2 = () => {
       application
     }
 
-    console.log(data);
-
     Swal.fire({
       icon: "question",
       text: "Are you sure you want to submit this application?",
@@ -392,13 +390,13 @@ const Form2 = () => {
       <h1 className="font-bold text-3xl text-center text-teal-500 my-8">ABC Selection Assessment</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
-        <div className='flex w-full'>
+        <div className='flex flex-wrap md:flex-nowrap w-full'>
           <TextField
             label="Name & Surname"
             color='primary'
             variant="outlined"
             {...register('name')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.name?.message}
             error={errors.name?.message ? true : false}
           />
@@ -408,24 +406,24 @@ const Form2 = () => {
             variant="outlined"
             {...register('phone')}
             placeholder='+0 000 000 0000'
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.phone?.message}
             error={errors.phone?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-full'>
+        <div className='flex flex-wrap md:flex-nowrap w-full'>
           <TextField
             label="ID Number"
             color='primary'
             variant="outlined"
             {...register('id')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.id?.message}
             error={errors.id?.message ? true : false}
           />
 
-          <div className='flex w-full m-2'>
+          <div className='w-full my-1 md:m-2'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 value={date1}

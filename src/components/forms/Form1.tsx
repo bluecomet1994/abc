@@ -56,49 +56,39 @@ const Form1 = () => {
 
   const onSubmit = (yupData: any) => {
     const application = {
-      "User info": [
-        { question: "Full Name", answer: yupData.name },
-        { question: "Contact Number", answer: yupData.phone },
-        { question: "ID Number", answer: yupData.id },
-        { question: "Area applied for", answer: yupData.area },
-        { question: "Interviewer", answer: yupData.interviewer },
-        { question: "Date", answer: date1.format('MM/DD/YYYY') }
-      ],
-      "Qualifying questions": [
-        { question: "Pass Matric/grade 12?", answer: qualify1 },
-        { question: "Do you have a criminal record?", answer: qualify2 },
-        { question: "Are you over the age of 22?", answer: qualify3 },
-        { question: "Are you a South Africa Citizen?", answer: qualify4 },
-        { question: "Where do you stay?", answer: yupData.qualify5 }
-      ],
-      "Interview observations & questions": [
-        { question: 'Confidence', answer: observation1 },
-        { question: 'Speaking', answer: observation2 },
-        { question: 'Reading', answer: observation3 },
-        { question: 'Listening', answer: observation4 },
-        { question: 'Sales Ability', answer: observation5 },
-        { question: 'Attitude', answer: observation6 },
-        { question: 'Overall', answer: observation7 },
-        { question: 'Tell me about your previous work experience', answer: yupData.observation8 },
-        { question: 'What motivated you to apply for this position?', answer: yupData.observation9 },
-        { question: "What do you understand about the position you've applied for?", answer: yupData.observation10 },
-        { question: "What would you say are the core competencies required for this position?", answer: yupData.observation11 },
-        { question: "General Question", answer: yupData.observation12 },
-        { question: "Comment", answer: yupData.observationComment },
-      ],
-      "Interviewer checklist & outcome": [
-        { question: "Salary, Commission structure & Pro-rata", answer: check1 },
-        { question: "Working hours & training hours", answer: check2 },
-        { question: "CV, bank details, Certified copy of ID, Matric", answer: check3 },
-        { question: "If successful, training date confirmed?", answer: check4 },
-        { question: "Outcome", answer: outcome }
-      ],
-      "Confirm": [
-        { question: "Training Date", answer: date2.format('MM/DD/YYYY') },
-        { question: "Do you give ABC permission to do: Reference, Criminal, ID and Qualifications check?", answer: confirm },
-        { question: "Interviewer Sign", answer: yupData.interviewerSign },
-        { question: "Candidate Sign", answer: yupData.candidateSign }
-      ]
+      name: yupData.name,
+      phone: yupData.phone,
+      id: yupData.id,
+      area: yupData.area,
+      interviewer: yupData.interviewer,
+      date1: date1.format('MM/DD/YYYY'),
+      date2: date2.format('MM/DD/YYYY'),
+      qualify1,
+      qualify2,
+      qualify3,
+      qualify4,
+      qualify5: yupData.qualify5,
+      observation1,
+      observation2,
+      observation3,
+      observation4,
+      observation5,
+      observation6,
+      observation7,
+      observation8: yupData.observation8,
+      observation9: yupData.observation9,
+      observation10: yupData.observation10,
+      observation11: yupData.observation11,
+      observation12: yupData.observation12,
+      comment: yupData.observationComment,
+      check1,
+      check2,
+      check3,
+      check4,
+      outcome,
+      confirm,
+      interviewerSign: yupData.interviewerSign,
+      candidateSign: yupData.candidateSign
     };
 
     const data = {
@@ -110,8 +100,6 @@ const Form1 = () => {
       application
     }
 
-    console.log(data);
-
     Swal.fire({
       icon: "question",
       text: "Are you sure you want to submit this application?",
@@ -122,7 +110,7 @@ const Form1 = () => {
 
         const fireStore = getFirestore(app);
         addDoc(collection(fireStore, 'applications'), data)
-          .then((docRef) => {
+          .then(() => {
             setIsLoading(false);
             Swal.fire({
               icon: "success",
@@ -145,13 +133,13 @@ const Form1 = () => {
       <h1 className="font-bold text-3xl text-center text-teal-500 my-8">ABC Assessment & Interview Schedule</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
-        <div className='flex w-full'>
+        <div className='flex flex-wrap md:flex-nowrap w-full'>
           <TextField
             label="Name & Surname"
             color='primary'
             variant="outlined"
             {...register('name')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.name?.message}
             error={errors.name?.message ? true : false}
           />
@@ -161,19 +149,19 @@ const Form1 = () => {
             variant="outlined"
             {...register('phone')}
             placeholder='+0 000 000 0000'
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.phone?.message}
             error={errors.phone?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-full'>
+        <div className='flex flex-wrap md:flex-nowrap w-full'>
           <TextField
             label="ID Number"
             color='primary'
             variant="outlined"
             {...register('id')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.id?.message}
             error={errors.id?.message ? true : false}
           />
@@ -182,24 +170,24 @@ const Form1 = () => {
             color='primary'
             variant="outlined"
             {...register('area')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.area?.message}
             error={errors.area?.message ? true : false}
           />
         </div>
 
-        <div className='flex w-full'>
+        <div className='flex flex-wrap md:flex-nowrap w-full'>
           <TextField
             label="Interviewer"
             color='primary'
             variant="outlined"
             {...register('interviewer')}
-            className='w-full m-2'
+            className='w-full my-1 md:m-2'
             helperText={errors.interviewer?.message}
             error={errors.interviewer?.message ? true : false}
           />
 
-          <div className='flex w-full m-2'>
+          <div className='w-full my-1 md:m-2'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 value={date1}
@@ -287,7 +275,7 @@ const Form1 = () => {
         <div className="my-8">
           <h1 className="font-bold text-lg underline">Interview Observations & Questions</h1>
 
-          <div className='flex items-center w-full'>
+          <div className='flex flex-col md:flex-row items-center w-full'>
             <div className='w-full'>
               <FormControl className='flex flex-row items-center m-2'>
                 <FormLabel id="matric" className='w-24 mr-8'>
@@ -484,7 +472,7 @@ const Form1 = () => {
         <div className='w-full my-8'>
           <h1 className="font-bold text-lg underline">Interview Checklist & Outcome</h1>
 
-          <div className='flex w-full'>
+          <div className='flex flex-col md:flex-row w-full'>
             <div className='flex flex-col w-full'>
               <div className="flex justify-between items-center w-full">
                 <p>Salary, Commission structure & Pro-rata</p>
@@ -525,7 +513,7 @@ const Form1 = () => {
           <p>Do you give ABC permission to do: Reference, Criminal, ID and Qualifications check?</p>
         </div>
 
-        <div className="flex items-center w-full my-4">
+        <div className="flex flex-wrap md:flex-nowrap items-center w-full my-4">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               className='w-full m-2'
@@ -564,6 +552,7 @@ const Form1 = () => {
             variant='contained'
             className='w-96 h-12 bg-teal-500'
             onClick={handleSubmit(onSubmit)}
+            disabled={isLoading}
           >
             {
               isLoading ?
