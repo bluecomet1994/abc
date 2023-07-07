@@ -13,7 +13,6 @@ import {
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
-import form3ValidationSchema from '@/utils/validations/form3';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import dayjs from 'dayjs';
@@ -23,11 +22,12 @@ import { STATUS_TEXT } from '@/utils/enums';
 import Swal from 'sweetalert2';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { app } from '@/config/firebase';
+import form4ValidationSchema from '@/utils/validations/form4';
 
 const Form4 = () => {
   const { currentUser } = useSelector(({ user }) => user);
   const router = useRouter();
-  const formOptions = { resolver: yupResolver(form3ValidationSchema) };
+  const formOptions = { resolver: yupResolver(form4ValidationSchema) };
 
   const { register, reset, handleSubmit, formState } = useForm(formOptions);
   const { errors } = formState;
@@ -262,7 +262,7 @@ const Form4 = () => {
         {question:"Learners ID", answer: yupData.id},
         {question:"Area", answer: yupData.area},
         {question:"Trainer", answer: yupData.trainer},
-        {question:"Date", answer: date1.toString()}
+        {question:"Date", answer: date1.format('MM/DD/YYYY')}
       ],
       "Circle the answer": [
         {question: "1. The Clientele Funeral Plans can provide cover for non-South African citizens",answer: select1},

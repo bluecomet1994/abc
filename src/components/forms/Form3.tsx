@@ -157,7 +157,7 @@ const Form3 = () => {
         {question:"Learners ID", answer: yupData.id},
         {question:"Area", answer: yupData.area},
         {question:"Trainer", answer: yupData.trainer},
-        {question:"Date", answer: date1.toString()}
+        {question:"Date", answer: date1.format('MM/DD/YYYY')}
       ],
       "Circle the answer": [
         {question: "1. Who is the market conduct Regulator of Financial Institutions?", answer: select1},
@@ -273,7 +273,7 @@ const Form3 = () => {
           />
 
           <TextField
-            label="Area"
+            label="Trainer"
             color='primary'
             variant="outlined"
             {...register('trainer')}

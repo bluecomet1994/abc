@@ -276,7 +276,7 @@ const Form2 = () => {
         {question:"Name & Surname", answer: yupData.name},
         {question:"Contact Number", answer: yupData.phone},
         {question:"ID Number", answer: yupData.id},
-        {question:"Assessment Date", answer: date1.toString()}
+        {question:"Assessment Date", answer: date1.format('MM/DD/YYYY')}
       ],
       "Section 1": [
         {

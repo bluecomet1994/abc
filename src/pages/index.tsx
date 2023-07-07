@@ -20,13 +20,13 @@ export default function Home() {
   useEffect(() => {
     if(!currentUser) {
       router.push('/auth/login');
+    } else {
+      getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
+        .then(({ docs }) => {
+          dispatch(getApplications(docs));
+          setIsLoading(false);
+        });
     }
-
-    getDocs(query(collection(fireStore, 'applications'), where('email', '==', currentUser.email)))
-      .then(({ docs }) => {
-        dispatch(getApplications(docs));
-        setIsLoading(false);
-      });
   }, [dispatch, fireStore, currentUser, router]);
 
   return isLoading ? (

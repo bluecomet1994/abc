@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import {
   Container,
   TextField,
+  Chip,
   Checkbox,
   CircularProgress,
   Button,
@@ -25,7 +26,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { STATUS_TEXT } from '@/utils/enums';
 
-const Form1 = () => {
+const Form1Preview = ({ detail }: any) => {
   const [date1, setDate1] = useState<any>(dayjs());
   const [date2, setDate2] = useState<any>(dayjs());
   const [qualify1, setQualify1] = useState('yes');
@@ -142,7 +143,13 @@ const Form1 = () => {
 
   return (
     <Container maxWidth="xl" className="w-full h-full p-4">
+      <h1 className='font-bold text-2xl text-center text-teal-700 my-8'>Your Application</h1>
+
       <h1 className="font-bold text-3xl text-center text-teal-500 my-8">ABC Assessment & Interview Schedule</h1>
+      <div className='flex justify-between items-center my-2'>
+        <p>Date: {detail.date}</p>
+        <Chip label={detail.status} />
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full'>
         <div className='flex w-full'>
@@ -578,4 +585,4 @@ const Form1 = () => {
   )
 }
 
-export default Form1;
+export default Form1Preview;

@@ -6,7 +6,7 @@ import { app } from "@/config/firebase";
 import { getApplications } from "@/store/actions/application.action";
 import { DocumentData, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { STATUS_TEXT } from "@/utils/enums";
-import PreviewPaper from "@/components/PreviewPaper";
+import PreviewPaper from "@/components/preview/PreviewPaper";
 
 export default function InterviewSchedule() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function InterviewSchedule() {
   ) : (
     <div className='w-full h-full overflow-auto'>
       {
-        detail && checklist[0].status.text === STATUS_TEXT.PENDING ?
+        checklist[0].status.text === STATUS_TEXT.PENDING ?
           <PreviewPaper detail={detail} />
           :
           <Form1 />

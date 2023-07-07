@@ -13,9 +13,7 @@ export default function ListCard(props: any) {
       >
         <span className={`absolute top-0 left-0 w-1 h-full bg-${data.status.color}`} />
 
-        <h1 className='font-bold text-xl'>
-          {data.title}
-        </h1>
+        <h1 className='font-bold text-xl'>{data.title}</h1>
 
         <div className='flex items-center font-sans'>
           <div className={`w-3 h-3 rounded-full bg-${data.status.color} mx-2`}></div>

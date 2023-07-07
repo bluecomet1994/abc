@@ -13,7 +13,6 @@ import {
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
-import form3ValidationSchema from '@/utils/validations/form3';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import dayjs from 'dayjs';
@@ -124,7 +123,7 @@ const Form5 = () => {
         { question: "Learners ID", answer: yupData.id },
         { question: "Area", answer: yupData.area },
         { question: "Trainer", answer: yupData.trainer },
-        { question: "Date", answer: date1.toString() }
+        { question: "Date", answer: date1.format('MM/DD/YYYY') }
       ],
       "Circle the answer": [
         {question: "2. What are the entry ages for someone who would like to join this cover? (1 mark)", answer: select1},
@@ -223,7 +222,7 @@ const Form5 = () => {
           />
 
           <TextField
-            label="Area"
+            label="Trainer"
             color='primary'
             variant="outlined"
             {...register('trainer')}
@@ -251,88 +250,90 @@ const Form5 = () => {
           <h1>1. Please complete the table below (7 marks)</h1>
 
           <table className="w-full">
-            <tr className="font-bold">
-              <td></td>
-              <td>STANDARD LEGAL NAME</td>
-              <td>CLASSIC LEGAL NAME</td>
-            </tr>
+            <tbody>
+              <tr className="font-bold">
+                <td></td>
+                <td>STANDARD LEGAL NAME</td>
+                <td>CLASSIC LEGAL NAME</td>
+              </tr>
 
-            <tr>
-              <td>PREMIUM</td>
-              <td>8200 per month</td>
-              <td>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table1')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>PREMIUM</td>
+                <td>8200 per month</td>
+                <td>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table1')}
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>WHO IS COVERED?</td>
-              <td>Main member only</td>
-              <td>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table2')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>WHO IS COVERED?</td>
+                <td>Main member only</td>
+                <td>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table2')}
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>LIFETIME COVER</td>
-              <td>R200 000 per year</td>
-              <td>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table3')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>LIFETIME COVER</td>
+                <td>R200 000 per year</td>
+                <td>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table3')}
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>EXCESS</td>
-              <td>3 X Premium</td>
-              <td>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table4')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>EXCESS</td>
+                <td>3 X Premium</td>
+                <td>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table4')}
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>ACCIDENTAL DEATH</td>
-              <td>Not applicable on Standard Legal</td>
-              <td>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table5')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>ACCIDENTAL DEATH</td>
+                <td>Not applicable on Standard Legal</td>
+                <td>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table5')}
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>ADDITIONAL MEMBERS</td>
-              <td colSpan={2}>
-                <TextField
-                  color="primary"
-                  variant="standard"
-                  className="w-full"
-                  {...register('table6')}
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>ADDITIONAL MEMBERS</td>
+                <td colSpan={2}>
+                  <TextField
+                    color="primary"
+                    variant="standard"
+                    className="w-full"
+                    {...register('table6')}
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
 

@@ -6,7 +6,7 @@ import { app } from "@/config/firebase";
 import { getApplications } from "@/store/actions/application.action";
 import { DocumentData, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { STATUS_TEXT } from "@/utils/enums";
-import PreviewPaper from "@/components/PreviewPaper";
+import PreviewPaper from "@/components/preview/PreviewPaper";
 
 export default function InterviewSchedule() {
   const dispatch = useDispatch();
